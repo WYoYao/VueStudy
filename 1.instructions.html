@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>常用指令</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <div class="panel panel-default" id='app'>
+        <div class="panel-heading">v-bind</div>
+        <div class="panel-body">
+            <image id="vbind" :alt='vbind.alt' :title='vbind.title' :style='vbind.style'></image>
+        </div>
+        <div class="panel-heading">v-for</div>
+        <div class="panel-body">
+            <ul id='vfor' v-for='key in vfor'>
+                <li>{{key}}</li>
+            </ul>
+        </div>
+        <div class="panel-heading">v-on</div>
+        <div class="panel-body">
+            <input type="text" @input='von'>
+            <h2>{{vOnValue}}</h2>
+        </div>
+        <div class="panel-heading">v-model</div>
+        <div class="panel-body">
+            <input type="text" v-model='vmodel'>
+            <h2>{{vmodel}}</h2>
+        </div>
+        <div class="panel-heading">v-if</div>
+        <div class="panel-body">
+            <h2 v-if='vif.off'>off</h2>
+            <h2 v-if='vif.on'>on</h2>
+        </div>
+        <div class="panel-heading">v-show</div>
+        <div class="panel-body">
+            <h2 v-show='vshow.off'>off</h2>
+            <h2 v-show='vshow.on'>on</h2>
+        </div>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            vbind: {
+                title: '图片的title',
+                alt: '图片的Alt',
+                style: {
+                    width: '100px',
+                    height: '100px',
+                }
+            },
+            vfor: [1, 2, 3, null, undefined, 4, 5, [1, 2, 3, 4], {
+                name: 'tom'
+            }],
+            von: function(e) {
+                app.vOnValue = e.target.value;
+                console.log(e.target.value);
+            },
+            vOnValue: '',
+            vmodel: 'Hello World',
+            vif: {
+                on: true,
+                off: false,
+            },
+            vshow: {
+                on: true,
+                off: false,
+            }
+        },
+    })
+</script>
+
+</html>

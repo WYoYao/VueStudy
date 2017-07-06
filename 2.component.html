@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件化开发</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+    <!--<ul class="list-group" id="app">
+        <todo-item v-for='item in groceryList' v-bind:key="item.id" v-bind:todo="item">
+        </todo-item>
+    </ul>-->
+    <div class="content" id="app">
+        <todo-list v-bind:list='groceryList'></todo-list>
+    </div>
+</body>
+
+<script>
+    Vue.component('todo-item', {
+        props: ['todo'],
+        template: '<li class="list-group-item">{{todo.text}}</li>'
+    });
+
+    Vue.component('todo-list', {
+        props: ['list'],
+        template: '<ul class="list-group"><todo-item v-for=\'item in list\' v-bind:key="item.id" v-bind:todo="item"></todo-item></ul>'
+    })
+
+    var app7 = new Vue({
+        el: '#app',
+        data: {
+            groceryList: [{
+                id: 0,
+                text: '蔬菜'
+            }, {
+                id: 1,
+                text: '奶酪'
+            }, {
+                id: 2,
+                text: '随便其他什么人吃的东西'
+            }]
+        },
+    });
+</script>
+
+
+</html>
