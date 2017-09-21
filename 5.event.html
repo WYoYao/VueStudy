@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/vue.min.js"></script>
+</head>
+<style>
+    .parentClick{
+        height: 300px;
+        width: 300px;
+        margin: 0 auto;
+        background: lightcyan;
+        overflow: hidden;
+    }
+    .childrenclick{
+        height: 200px;
+        width: 200px;
+        margin: 50px;
+        background: lightgreen;
+        overflow: hidden;
+    }
+    .sonclick{
+        height: 100px;
+        width: 100px;
+        margin: 50px;
+        background: lightpink;
+        overflow: hidden;
+    }    
+</style>
+<body>
+    <div id="app">
+        <h2>正常情况是冒泡排序（从内到外）</h2>
+        <div class="parentClick" @click='parentClick()'>
+            <div class="childrenclick" @click='childrenclick()'>
+                <div class="sonclick" @click='sonclick()'></div>
+            </div>
+        </div>
+        <h2>stop阻止冒泡排序（从内到外）</h2>
+        <div class="parentClick" @click='parentClick()'>
+            <div class="childrenclick" @click.stop='childrenclick()'>
+                <div class="sonclick" @click='sonclick()'></div>
+            </div>
+        </div>
+        <h2>capture捕获修饰器修饰后是按捕获顺序排序（从外到内）</h2>
+        <div class="parentClick" @click.capture='parentClick()'>
+            <div class="childrenclick" @click.capture='childrenclick()'>
+                <div class="sonclick" @click.capture='sonclick()'></div>
+            </div>
+        </div>
+        <h2>self修饰器修饰后是只有目标是自己的情况下才触发（只有自己触发）</h2>
+        <div class="parentClick" @click.self='parentClick()'>
+            <div class="childrenclick" @click.self='childrenclick()'>
+                <div class="sonclick" @click.self='sonclick()'></div>
+            </div>
+        </div>
+
+        <h2>once 只触发一次，且同时也是冒泡事件</h2>
+        <div class="parentClick" @click.once='parentClick()'>
+            <div class="childrenclick" @click.once='childrenclick()'>
+                <div class="sonclick" @click.once='sonclick()'></div>
+            </div>
+        </div>
+
+        <h2>prevent 调用方法完成后会组织后面的事件</h2>
+        <div class="parentClick" @click.capture.prevent='parentClick()'>
+            <div class="childrenclick" @click='childrenclick()'>
+                <div class="sonclick" @click.stop.prevent='sonclick()'></div>
+            </div>
+        </div>
+    </div>
+    <script src="5.js"></script>
+</body>
+</html>
